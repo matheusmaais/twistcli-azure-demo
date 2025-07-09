@@ -33,10 +33,10 @@ jobs:
             -H "Content-Type: application/json" \
             -X GET -o twistcli \
             -d \
-            '{
+            "{
                 "username":"$PRISMA_USER",
                 "password":"$PRISMA_PASSWORD"
-            }' \
+            }" \
             https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli
 
       - name: Make Twistcli executable
