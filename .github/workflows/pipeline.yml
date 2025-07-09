@@ -32,11 +32,22 @@ jobs:
 
       - name: Generate Token
         run: |
-          curl -k \
+          RESPONSE=$(curl -s -k \
             -H "Content-Type: application/json" \
             -X POST \
             -d '{"username":"${{ secrets.PRISMA_USER }}","password":"${{ secrets.PRISMA_PASSWORD }}"}' \
-            https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate
+              https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate)
+            TOKEN=$(echo "$RESPONSE" | jq -r .token) >> GITHUB_ENV
+
+      - name: Download Twistcli binary from API
+        run: |
+          curl -k \
+            -u "${PRISMA_USER}:${PRISMA_PASSWORD}" \
+            -X GET -o twistcli \
+            https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli
+        env:
+          PRISMA_USER: ${{ secrets.PRISMA_USER }}
+          PRISMA_PASSWORD: ${{ secrets.PRISMA_PASSWORD }}
 
       - name: Make Twistcli executable
         run: chmod +x twistcli
