@@ -31,7 +31,7 @@ jobs:
         run: |
           curl -v -k \
             -H "Content-Type: application/json" \
-            -X POST -o twistcli \
+            -X GET -o twistcli \
             -d "{
               \"username\":\"$PRISMA_USER\",
               \"password\":\"$PRISMA_PASSWORD\"
