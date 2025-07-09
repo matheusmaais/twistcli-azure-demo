@@ -47,11 +47,3 @@ jobs:
 
       - name: Perform twistcli scan
         run: ./twistcli serverless scan -u $PRISMA_USER -p $PRISMA_PASSWORD --address https://app0.cloud.twistlock.com/panw-app0-310 myfunction.zip
-
-
-
-  curl -k \
-	-u $PRISMA_USER \
-  -p $PRISMA_PASSWORD \
-	-X GET -o twistlock \
-  'https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli'
