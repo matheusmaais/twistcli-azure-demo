@@ -30,10 +30,11 @@ jobs:
 
       - name: Download twistcli binary
         run: |
-            curl -k \                                                                                                              ✔
+            curl -k \                                                                                                            1 ✘
             -H "Content-Type: application/json" \
             -X GET -o twistcli \
-            -d '{
+            -d \
+            '{
                 "username":"$PRISMA_USER",
                 "password":"$PRISMA_PASSWORD"
             }' \
