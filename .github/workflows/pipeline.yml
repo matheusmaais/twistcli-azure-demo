@@ -27,17 +27,18 @@ jobs:
       - name: Zip the file
         run: zip -r myfunction.zip .
 
+      - name: Debug secrets length
+        run: |
+          echo "USER length: ${#PRISMA_USER}"
+          echo "PASS length: ${#PRISMA_PASSWORD}"
+
       - name: Generate Token
         run: |
           curl -k \
-          -H "Content-Type: application/json" \
-          -X POST \
-          -d \
-          '{
-             "username":"$PRISMA_USER",
-             "password":"$PRISMA_PASSWORD"
-          }' \
-          https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d "{"username\":\"${{ secrets.PRISMA_USER }}\",\"password\":\"${{ secrets.PRISMA_PASSWORD }}\"}" \
+            https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate
 
       - name: Make Twistcli executable
         run: chmod +x twistcli
