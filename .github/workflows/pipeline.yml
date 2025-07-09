@@ -12,20 +12,18 @@ jobs:
       PRISMA_USER: ${{ secrets.PRISMA_USER }}
       PRISMA_PASSWORD: ${{ secrets.PRISMA_PASSWORD }}
     steps:
+      # - uses: actions/checkout@v4
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.12'
+      # - name: Install dependencies and zip file
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt -t .python_packages
 
-      - uses: actions/checkout@v4
-      - name: Set up Python
-
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-      - name: Install dependencies and zip file
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt -t .python_packages
-
-      - name: Zip the file
-        run: zip -r myfunction.zip .
+      # - name: Zip the file
+      #   run: zip -r myfunction.zip .
 
       - name: Debug secrets length
         run: |
@@ -37,7 +35,7 @@ jobs:
           curl -k \
             -H "Content-Type: application/json" \
             -X POST \
-            -d "{"username\":\"${{ secrets.PRISMA_USER }}\",\"password\":\"${{ secrets.PRISMA_PASSWORD }}\"}" \
+            -d '{"username":"${{ secrets.PRISMA_USER }}","password":"${{ secrets.PRISMA_PASSWORD }}"}' \
             https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate
 
       - name: Make Twistcli executable
