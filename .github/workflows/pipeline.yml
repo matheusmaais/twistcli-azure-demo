@@ -27,16 +27,17 @@ jobs:
       - name: Zip the file
         run: zip -r myfunction.zip .
 
-      - name: Download twistcli binary
+      - name: Generate Token
         run: |
-          curl -k \
+          curl -k \                                                                                                   INT ✘
           -H "Content-Type: application/json" \
-          -X GET -o twistcli \
-          -d "{
-            \"username\": \"${PRISMA_USER}\",
-            \"password\": \"${PRISMA_PASSWORD}\"
-          }" \
-          https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli
+          -X POST \
+          -d \
+          '{
+             "username":"$PRISMA_USER",
+             "password":"$PRISMA_PASSWORD"
+          }' \
+          https://app0.cloud.twistlock.com/panw-app0-310/api/v1/authenticate
 
       - name: Make Twistcli executable
         run: chmod +x twistcli
@@ -46,3 +47,11 @@ jobs:
 
       - name: Perform twistcli scan
         run: ./twistcli serverless scan -u $PRISMA_USER -p $PRISMA_PASSWORD --address https://app0.cloud.twistlock.com/panw-app0-310 myfunction.zip
+
+
+
+  curl -k \
+	-u $PRISMA_USER \
+  -p $PRISMA_PASSWORD \
+	-X GET -o twistlock \
+  'https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli'
