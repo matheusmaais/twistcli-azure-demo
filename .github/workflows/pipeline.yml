@@ -29,14 +29,15 @@ jobs:
 
       - name: Download twistcli binary
         run: |
-          curl -v -k \
+          curl -k \
           -H "Content-Type: application/json" \
           -X GET -o twistcli \
-          -d '{
-            "username":"${{ secrets.PRISMA_USER }}",
-            "password":"${{ secrets.PRISMA_PASSWORD }}"
-          }' \
+          -d "{
+            \"username\": \"${PRISMA_USER}\",
+            \"password\": \"${PRISMA_PASSWORD}\"
+          }" \
           https://app0.cloud.twistlock.com/panw-app0-310/api/v1/util/twistcli
+
       - name: Make Twistcli executable
         run: chmod +x twistcli
 
