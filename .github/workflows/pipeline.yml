@@ -12,6 +12,7 @@ jobs:
       PRISMA_USER: ${{ secrets.PRISMA_USER }}
       PRISMA_PASSWORD: ${{ secrets.PRISMA_PASSWORD }}
     steps:
+ ################ CONSIDER THIS YOUR USUAL CI FLOW #################
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,7 +25,11 @@ jobs:
 
       - name: Zip the file
         run: zip -r myfunction.zip .
+##################################################################
 
+
+####################################################################
+#################### TWISTCLI PART #################################
       - name: Download Twistcli binary from API
         run: |
           curl -k \
