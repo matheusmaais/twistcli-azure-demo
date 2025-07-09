@@ -29,7 +29,7 @@ jobs:
 
       - name: Download twistcli binary
         run: |
-            curl -k \
+            curl -v-k \
             -H "Content-Type: application/json" \
             -X GET -o twistcli \
             -d \
