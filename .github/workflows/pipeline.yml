@@ -11,7 +11,7 @@ jobs:
     env:
       PRISMA_USER: ${{ secrets.PRISMA_USER }}
       PRISMA_PASSWORD: ${{ secrets.PRISMA_PASSWORD }}
-      PRISMA_CONSOLE: "https://app0.cloud.twistlock.com/panw-app0-310"
+      PRISMA_CONSOLE: https://app0.cloud.twistlock.com/panw-app0-310
     steps:
 
       - uses: actions/checkout@v4
