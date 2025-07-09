@@ -29,7 +29,7 @@ jobs:
 
       - name: Generate Token
         run: |
-          curl -k \                                                                                                   INT ✘
+          curl -k \
           -H "Content-Type: application/json" \
           -X POST \
           -d \
